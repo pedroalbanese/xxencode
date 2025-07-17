@@ -13,7 +13,7 @@
                          |     |
   begin line ____ begin 644 filename
                   5ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZab5cdef5ghij5klmn5opqr5st
-  encoded data __ 5uvwx5yz01+2345-67895ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZabcd
+  encoded data __ 5uvwx5yz01+2345-67895ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZabcd8
                   +
   end line ______ end</pre>
   
