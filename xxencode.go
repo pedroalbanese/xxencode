@@ -208,9 +208,10 @@ func (r *Reader) Read(p []byte) (n int, err error) {
 
 		// Decodifica a linha
 		data := line[1:]
-		r.buf = make([]byte, 0, length) // Usamos slice e append para controle preciso
+		r.buf = make([]byte, length) // Aloca exatamente o tamanho necessário
+		bytesDecoded := 0
 
-		for i := 0; i < len(data); i += 4 {
+		for i := 0; i < len(data) && bytesDecoded < length; i += 4 {
 			if i+3 >= len(data) {
 				break
 			}
@@ -226,30 +227,33 @@ func (r *Reader) Read(p []byte) (n int, err error) {
 
 			// Decodifica o primeiro byte
 			b1 := byte((c1 << 2) | (c2 >> 4))
-			r.buf = append(r.buf, b1)
+			r.buf[bytesDecoded] = b1
+			bytesDecoded++
 
 			// Decodifica o segundo byte se disponível
-			if len(r.buf) < length && data[i+2] != '+' {
+			if bytesDecoded < length && data[i+2] != '+' {
 				if c3 == -1 {
 					return 0, errors.New("invalid encoding character")
 				}
 				b2 := byte((c2 << 4) | (c3 >> 2))
-				r.buf = append(r.buf, b2)
+				r.buf[bytesDecoded] = b2
+				bytesDecoded++
 			}
 
 			// Decodifica o terceiro byte se disponível
-			if len(r.buf) < length && data[i+3] != '+' {
+			if bytesDecoded < length && data[i+3] != '+' {
 				if c4 == -1 {
 					return 0, errors.New("invalid encoding character")
 				}
 				b3 := byte((c3 << 6) | c4)
-				r.buf = append(r.buf, b3)
+				r.buf[bytesDecoded] = b3
+				bytesDecoded++
 			}
 		}
 
-		// Garante que temos exatamente o número de bytes esperados
-		if len(r.buf) != length {
-			return 0, errors.New("decoded length mismatch")
+		// Verifica se decodificamos todos os bytes esperados
+		if bytesDecoded != length {
+			return 0, fmt.Errorf("decoded length mismatch: expected %d, got %d", length, bytesDecoded)
 		}
 
 		r.pos = 0
