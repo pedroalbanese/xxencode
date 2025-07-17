@@ -12,9 +12,9 @@
   permission mode _______       ______ file name to be given to decoded file
                          |     |
   begin line ____ begin 644 filename
-                  h5X8f5X8g5T8f5T8f5X8g5T8f5T8f5X8g5P8g5P8f5T8g5T8g5T8f5X8B5
-  encoded data __ h5!EJ5!AK5W"@5"`@g5`@<`P=6U0N,3$@"!EJ,#PO,3@@5"`@<(`\+&UMR
-                  `
+                  5ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZab5cdef5ghij5klmn5opqr5st
+  encoded data __ 5uvwx5yz01+2345-67895ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZabcd
+                  +
   end line ______ end</pre>
   
 ## Usage
