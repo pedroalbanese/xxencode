@@ -1,4 +1,4 @@
-module xxe
+module xxencode
 
 go 1.20
 
