@@ -16,6 +16,12 @@ const (
 	blockSize = 45  // Tamanho do bloco em bytes
 )
 
+// FileInfo contém informações sobre o arquivo codificado
+type FileInfo struct {
+	Name string
+	Mode os.FileMode
+}
+
 // NewWriter returns a new Writer that writes XXEncoded data to w
 func NewWriter(w io.Writer, filename string, mode os.FileMode) *Writer {
 	ww := &Writer{
@@ -29,6 +35,7 @@ func NewWriter(w io.Writer, filename string, mode os.FileMode) *Writer {
 	return ww
 }
 
+// Writer implementa a interface io.Writer para codificar dados em XXEncode
 type Writer struct {
 	w        io.Writer
 	filename string
@@ -123,6 +130,7 @@ func NewReader(r io.Reader, fileInfo *FileInfo) *Reader {
 	}
 }
 
+// Reader implementa a interface io.Reader para decodificar dados XXEncoded
 type Reader struct {
 	r          *bufio.Reader
 	fileInfo   *FileInfo
@@ -130,11 +138,6 @@ type Reader struct {
 	eof        bool
 	buf        []byte
 	pos        int
-}
-
-type FileInfo struct {
-	Name string
-	Mode os.FileMode
 }
 
 func (r *Reader) readHeader() error {
@@ -163,16 +166,6 @@ func (r *Reader) readHeader() error {
 			}
 		}
 	}
-}
-
-// Reader implementa a interface io.Reader para decodificar dados XXEncoded
-type Reader struct {
-	r          *bufio.Reader
-	fileInfo   *FileInfo
-	headerRead bool
-	eof        bool
-	buf        []byte
-	pos        int
 }
 
 func (r *Reader) Read(p []byte) (n int, err error) {
