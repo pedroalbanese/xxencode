@@ -12,8 +12,8 @@
   permission mode _______       ______ file name to be given to decoded file
                          |     |
   begin line ____ begin 644 filename
-                  5ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZab5cdef5ghij5klmn5opqr5st
-  encoded data __ 5uvwx5yz01+2345-67895ABCD5EFGH5IJKL5MNOP5QRST5UVWX5YZabcd8
+                  hJy8DgzCy1YxDb9E5HaU0UK0k-GTNyFxUv0+6+3-+6EfbHQnJ8GJ0l0gsC
+  encoded data __ h-kxjeLsTpz7x+GY-FGI+E+I+btvx5sHwt99E3Uc-GKWV9NMOZ9NcTHyPx
                   +
   end line ______ end</pre>
   
