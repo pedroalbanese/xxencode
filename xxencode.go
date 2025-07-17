@@ -4,6 +4,7 @@ package xxencode
 import (
 	"bufio"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"strings"
